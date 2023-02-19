@@ -4,6 +4,7 @@ import WalletSpecifier from './components/wallet';
 import Navbar from './components/navbar';
 import ImageDisplay from './components/imagedisplay';
 import Textarea from './components/textae';
+import Aptos from './components/aptosnftcreator';
 
 
 
@@ -17,8 +18,9 @@ function App() {
   
       {/* <WalletSpecifier setAddress={setAddress} /> */}
       <Navbar address={address} />
-      <ImageDisplay />
-      <Textarea />
+      {/* <ImageDisplay />
+      <Textarea />  */}
+      {/* <Aptos /> */}
 
     </>
   );

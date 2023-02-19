@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 
 
+
 interface AddressProps{
   setAddress: (address :string) => void;
 }
@@ -11,8 +12,9 @@ function WalletSpecifier (props:AddressProps)  {
   
   const getProvider = async () => {
     const response = await (window as any).martian.connect();
-    const data = response["address"]
+    const data = response
     props.setAddress(data);
+    console.log(data);
     // if ("martian" in (window as any)) {
     //   return((window as any).martian);
     //   console.log("Martian wallet is available");
