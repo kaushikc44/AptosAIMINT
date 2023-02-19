@@ -24,7 +24,7 @@ function Navbar(props:addressprops){
         
     }
 
-    const list = document.getElementById("navbar-search");
+    const list = document.getElementById("user-menu-button");
     function closerMenu(event:any){
         (menu as any).classList.add('hidden');
         
@@ -36,7 +36,7 @@ function Navbar(props:addressprops){
     return (
         <>
         
-            <nav className="bg-white grid grid-cols-2 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 " >
+            <nav className="sticky bg-white grid grid-cols-2 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900 " >
                 <div className="container flex flex-wrap items-center justify-between mx-auto">
                     <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white ">NFT MINT</span>
                 
@@ -55,8 +55,8 @@ function Navbar(props:addressprops){
                         </ul>
                     </div>
                 </div>
-                <div className="flex relative dropdown-toggle items-center justify-end md:order-2 "  datat-toggle={"dropdown"}>
-                            <button type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom" onClick={toggleMenu}>
+                <div className="flex relative dropdown-toggle items-center justify-end md:order-2 "  datat-toggle={"dropdown"} >
+                            <button type="button" className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom" onClick={toggleMenu} onMouseOut={closerMenu}>
                                 <span className="sr-only">Open user menu</span>
                                 <img className="w-10 h-10 rounded-full" src={myimage} alt="user photo" />
                             </button>

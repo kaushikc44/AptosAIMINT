@@ -18,8 +18,8 @@ function App() {
   
       {/* <WalletSpecifier setAddress={setAddress} /> */}
       <Navbar address={address} />
-      {/* <ImageDisplay />
-      <Textarea />  */}
+      <ImageDisplay />
+      <Textarea /> 
       {/* <Aptos /> */}
 
     </>
