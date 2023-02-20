@@ -18,12 +18,13 @@ function App() {
     <>
 
       {/* <WalletSpecifier setAddress={setAddress} setdiscounnect={setdiscounnect} text={text}/> */}
-      <Navbar address={address} />
+      <Navbar address={address} setdiscounnect={setdiscounnect}/>
+      console.log(discounnect);
       <div className='flex justify-center items-center'>
         <Form />
         <ImageDisplay />
       </div>
-      {/* <Textarea setText={setText} text={text}/> */}
+      <Textarea setText={setText} text={text}/>
       {/* <Aptos /> */}
 
     </>
