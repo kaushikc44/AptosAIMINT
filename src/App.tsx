@@ -13,13 +13,13 @@ function App() {
   const [discounnect, setdiscounnect] = useState<boolean>(false);
   const [text, setText] = useState<string>("Enter prompt here!");
   const [address, setAddress] = useState<string>("0x2845d80774ccf3ae0b02e39a149aff6a4f7b5a69fa59e2aa33d1d195d92693c3");
-
+  console.log(discounnect);
   return (
     <>
 
       {/* <WalletSpecifier setAddress={setAddress} setdiscounnect={setdiscounnect} text={text}/> */}
       <Navbar address={address} setdiscounnect={setdiscounnect}/>
-      console.log(discounnect);
+      
       <div className='flex justify-center items-center'>
         <Form />
         <ImageDisplay />
