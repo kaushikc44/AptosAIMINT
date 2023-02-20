@@ -21,7 +21,7 @@ function App() {
       <Navbar address={address} />
       <ImageDisplay />
       <Textarea setText={setText} text={text}/>
-      <Aptos />
+      {/* <Aptos /> */}
 
     </>
   );
