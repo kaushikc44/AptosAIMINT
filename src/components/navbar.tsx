@@ -43,7 +43,7 @@ function Navbar(props:addressprops){
                     </ul>
                 </div>
                 <div className=" relative dropdown-toggle md:order-2 "  onMouseLeave={()=>{setVisibility(true)}} >
-                            <button type="button" onClick={()=>{setVisibility(!visibility)}} className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                            <button type="button" onClick={()=>{setVisibility(!visibility)}} className={`flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 ${visibility ===false ? "focus:ring-4":""} ${visibility ===true ? "focus:ring-gray-300":""} ${visibility ===true ? "dark:focus:ring-gray-600":""}`} id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                                 <span className="sr-only">Open user menu</span>
                                 <img className="w-10 h-10 rounded-full" src={myimage} alt="user photo" />
                             </button>
