@@ -4,6 +4,7 @@ import React,{useState} from 'react';
 
 interface AddressProps{
   setAddress: (address :string) => void;
+  setdiscounnect:(discounnect:boolean) => void;
 }
 
 function WalletSpecifier (props:AddressProps)  {
@@ -13,14 +14,14 @@ function WalletSpecifier (props:AddressProps)  {
   const getProvider = async () => {
     const response = await (window as any).martian.connect();
     const data = response
-    props.setAddress(data);
+    props.setAddress(data["address"]);
+    if(data["method"] === "connected"){
+      props.setdiscounnect(false);
+    }
     console.log(data);
-    // if ("martian" in (window as any)) {
-    //   return((window as any).martian);
-    //   console.log("Martian wallet is available");
-
-    // }
-    // window.open("https://www.martianwallet.xyz/", "_blank");
+    //Create a new Collection
+    const txnHash = await (window as any).martian.createCollection("Colname1111", "CollectionDescription", "https://aptos.dev")
+    console.log(txnHash);
   };
 
 
