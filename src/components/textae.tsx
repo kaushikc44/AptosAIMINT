@@ -1,13 +1,22 @@
 import React,{useState} from 'react';
 
+interface promptext{
+    setText:(text:string) => void;
+    text:string;
+}
 
-function Textarea(){
+function Textarea(props:promptext){
+    
+    const  updateThetext = () => {
+        props.setText(props.text);
+    }
+
     return(
         <>
         <div className="container grid grid-rows-2">
         <div className="container grid grid-rows-2 grid-cols-1 content-center pt-5">
             <label htmlFor="message" className="mx-auto block row-1 mb-2 text-2lg font-medium text-gray-900 dark:text-dark">Enter prompt here!</label>
-            <textarea id="message" rows={2} style={{ maxWidth: '900px' }}  className="block  mx-auto resize-none indent-8 p-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " placeholder="Write your thoughts here..."></textarea>
+            <textarea id="message" rows={2} style={{ maxWidth: '900px' }} className="block  mx-auto resize-none indent-8 p-1.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " placeholder="Write your thoughts here..." onChange={updateThetext}></textarea>
 
         </div>
 

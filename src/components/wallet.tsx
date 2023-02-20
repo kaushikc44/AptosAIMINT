@@ -2,12 +2,14 @@ import React,{useState} from 'react';
 
 
 
-interface AddressProps{
-  setAddress: (address :string) => void;
-  setdiscounnect:(discounnect:boolean) => void;
-}
+// interface AddressProps{
+//   setAddress: (address :string) => void;
+//   setdiscounnect:(discounnect:boolean) => void;
+//   text:string;
+// }
 
-function WalletSpecifier (props:AddressProps)  {
+function WalletSpecifier (props:any)  {
+  const {text} = props;
   
   const isMartianWalletInstalled = (window as any).martian
   
@@ -20,7 +22,7 @@ function WalletSpecifier (props:AddressProps)  {
     }
     console.log(data);
     //Create a new Collection
-    const txnHash = await (window as any).martian.createCollection("Colname1111", "CollectionDescription", "https://aptos.dev")
+    const txnHash = await (window as any).martian.createCollection("Colname1111", {text}, "https://aptos.dev")
     console.log(txnHash);
   };
 
