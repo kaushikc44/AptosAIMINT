@@ -6,7 +6,7 @@ import ImageDisplay from './components/imagedisplay';
 import Textarea from './components/textae';
 import Aptos from './components/aptosnftcreator';
 import Form from './components/form';
-
+import ParticlesApp from './components/partciles';
 
 
 function App() {
@@ -16,15 +16,23 @@ function App() {
   console.log(discounnect);
   return (
     <>
-
-      {/* <WalletSpecifier setAddress={setAddress} setdiscounnect={setdiscounnect} text={text}/> */}
-      <Navbar address={address} setdiscounnect={setdiscounnect}/>
       
-      <div className='flex justify-center items-center'>
-        <Form />
-        <ImageDisplay />
+      {/* <WalletSpecifier setAddress={setAddress} setdiscounnect={setdiscounnect} text={text}/> */}
+      
+      <div id="container">
+        <ParticlesApp />
+        <div id="mydiv">
+          <Navbar address={address} setdiscounnect={setdiscounnect}/>
+          <div className='flex justify-center items-center' >
+          <Form />
+          <ImageDisplay /> 
+        </div>
+        <Textarea setText={setText} text={text}/>
+        </div>
+        
       </div>
-      <Textarea setText={setText} text={text}/>
+      
+      
       {/* <Aptos /> */}
 
     </>
