@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import myimage from "./../assets/images/mushroom.png";
+import { useNavigate } from "react-router-dom";
 
 interface addressprops{
     address:string;
@@ -11,14 +12,16 @@ interface addressprops{
 
 function Navbar(props:addressprops){
     const [visibility, setVisibility] = useState<boolean>(true)
-
+    const navigate = useNavigate();
     let AAddress = props.address;
     let addressvalue = AAddress.slice(0,4) +".."+ AAddress.slice(64,66);
     console.log(addressvalue);
     var menu = document.getElementById("user-dropdown");
     
-    const signout = () => {
+    const signout = async () => {
         props.setdiscounnect(true);
+        await (window as any).martian.disconnect();
+        navigate("/")
     }
 
     const handleVisibility = () => {
