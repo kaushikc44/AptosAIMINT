@@ -11,7 +11,7 @@ function ImageDisplay(props:any) {
           alt="gallery"
           className="block object-cover object-center w-full h-full rounded-lg"
           src={url} onError={(err) => {setbackupImage("https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(74).webp")}}
-        />))};
+        />))}
 
         </div>
     )
