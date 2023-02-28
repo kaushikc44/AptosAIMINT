@@ -27,7 +27,8 @@ function Textarea(props:any){
             });
             // .then(response => console.log(response.json())).catch(err => console.log(err));
         const ans = await req.json();
-        console.log(ans);
+        props.setUrlimages(ans.result)
+        console.log("Printing the result",ans.result);
             // for(let i  = 0 ; i < (res as any).result.length; i++){
             //     props.setUrlimages(res.result[i]);
             // }
@@ -53,14 +54,15 @@ function Textarea(props:any){
                 headers:{"Content-Type": "application/json"}
             });
             const ans = await req.json();
-            console.log(ans);
+            console.log(ans.result);
             for(let i = 0; i < ans.length; i++){
                 console.log(ans.result[i]);
-                props.setUrlimages((ans).result[i])
+                props.setUrlimages(ans.result[i])
             }
             
 
         }
+        console.log(props.urlimages);
         
     }
 

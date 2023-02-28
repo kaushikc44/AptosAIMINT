@@ -24,7 +24,7 @@ function App() {
   const [collectionName,setcollectionName] = useState<string>("");
   const [text, setText] = useState<any>("Enter prompt here!");
   const [address, setAddress] = useState<string>("0x2845d80774ccf3ae0b02e39a149aff6a4f7b5a69fa59e2aa33d1d195d92693c3");
-  const [urlimages, setUrlimages] = useState<string[]>([""])
+  const [urlimages, setUrlimages] = useState<string[]>([]);
   console.log(discounnect);
   
   
@@ -65,7 +65,7 @@ function App() {
           <Navbar address={address} setdiscounnect={setdiscounnect}/>
           <div className='flex justify-center items-center' >
           <Form  setcollectionName={setcollectionName} collectionName={collectionName} setmaxsupply={setmaxsupply} maxsupply={maxsupply} royaltAddress={royaltAddress} setroyaltAddress={setroyaltAddress}/>
-          <ImageDisplay urlimage={urlimages}/> 
+          <ImageDisplay urlimages={urlimages}/> 
         </div>
         <Textarea setText={setText} text={text} setUrlimages={setUrlimages} urlimages={urlimages} collectionMint={collectionMint}/>
         </div>

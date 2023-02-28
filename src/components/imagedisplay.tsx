@@ -6,7 +6,7 @@ function ImageDisplay(props:any) {
     const [backupImage,setbackupImage] = useState("");
     return (
         <div className="grid grid-cols-3 p-4 gap-2">
-                 {props.urlimage.map((url:string) => (
+                 {props.urlimages.map((url:string) => (
         <img
           alt="gallery"
           className="block object-cover object-center w-full h-full rounded-lg"
