@@ -19,23 +19,24 @@ function Textarea(props:any){
     }
 
     const testimages = async () =>{
-        // const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/api/v0/",{
-        //         method: "POST",
-        //         mode:"cors",
-        //         body: JSON.stringify(obj),
-        //         headers:{"Content-Type": "application/json"}
-        //     });
-        //     // .then(response => console.log(response.json())).catch(err => console.log(err));
-        // const ans = await req.json();
-        // props.setUrlimages(ans.result)
-        // console.log("Printing the result",ans.result);
-        //     // for(let i  = 0 ; i < (res as any).result.length; i++){
-        //     //     props.setUrlimages(res.result[i]);
-        //     // }
+        props.setUrlimages([])
+        const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/api/v0/",{
+                method: "POST",
+                mode:"cors",
+                body: JSON.stringify(obj),
+                headers:{"Content-Type": "application/json"}
+            });
+            // .then(response => console.log(response.json())).catch(err => console.log(err));
+        const ans = await req.json();
+        props.setUrlimages(ans.result)
+        console.log("Printing the result",ans.result);
+            // for(let i  = 0 ; i < (res as any).result.length; i++){
+            //     props.setUrlimages(res.result[i]);
+            // }
             
         //     // looping();
 
-         props.collectionMint();
+        //  props.collectionMint();
     }
 
     const value:any = []
