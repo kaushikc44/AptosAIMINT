@@ -22,18 +22,19 @@ function Textarea(props:any){
         const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/api/v0/",{
                 method: "POST",
                 mode:"cors",
-                body: JSON.stringify(obj as Object)
+                body: JSON.stringify(obj),
+                headers:{"Content-Type": "application/json"}
             });
             // .then(response => console.log(response.json())).catch(err => console.log(err));
-            const res = await req.json();
-            console.log((res as any).result);
+        const ans = await req.json();
+        console.log(ans);
             // for(let i  = 0 ; i < (res as any).result.length; i++){
             //     props.setUrlimages(res.result[i]);
             // }
             
             // looping();
 
-            props.collectionMint();
+            // props.collectionMint();
     }
 
 
@@ -45,15 +46,17 @@ function Textarea(props:any){
         
         console.log("Printing the object",obj["propmt"])
         if (props.text.length !== 0){
-            const res = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/api/v0/propmt",{
+            const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/api/v0/propmt",{
                 method: "POST",
-                // mode:"cors",
-                body: JSON.stringify(obj as object)
+                mode:"cors",
+                body: JSON.stringify(obj),
+                headers:{"Content-Type": "application/json"}
             });
-            const ans = await res.json();
+            const ans = await req.json();
             console.log(ans);
             for(let i = 0; i < ans.length; i++){
-                props.setUrlimages((ans as any).result[i])
+                console.log(ans.result[i]);
+                props.setUrlimages((ans).result[i])
             }
             
 

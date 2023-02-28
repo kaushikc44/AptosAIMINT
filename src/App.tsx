@@ -24,7 +24,7 @@ function App() {
   const [collectionName,setcollectionName] = useState<string>("");
   const [text, setText] = useState<any>("Enter prompt here!");
   const [address, setAddress] = useState<string>("0x2845d80774ccf3ae0b02e39a149aff6a4f7b5a69fa59e2aa33d1d195d92693c3");
-  const [urlimages, setUrlimages] = useState<string[]>(["https://oaidalleapiprodscus.blob.core.windows.net/private/org-ly5GphjXTO7U5GawU4ToSrUu/user-el5TfuXeAaNqiu9Z477Xlx3Q/img-jPmMs8a2ZX4O4WRou1A3FMmh.png?st=2023-02-23T09%3A23%3A26Z&se=2023-02-23T11%3A23%3A26Z&sp=r&sv=2021-08-06&sr=b&rscd=inline&rsct=image/png&skoid=6aaadede-4fb3-4698-a8f6-684d7786b067&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2023-02-23T02%3A53%3A38Z&ske=2023-02-24T02%3A53%3A38Z&sks=b&skv=2021-08-06&sig=d5vShDp91k7By6WjeiWXAS5n7bvmVhGrRdoPOPdEETM%3D","https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(74).webp","https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(75).webp","https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(76).webp","https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(77).webp","https://mdbcdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(78).webp"])
+  const [urlimages, setUrlimages] = useState<string[]>([""])
   console.log(discounnect);
   
   
