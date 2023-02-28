@@ -55,10 +55,7 @@ function Textarea(props:any){
             });
             const ans = await req.json();
             console.log(ans.result);
-            for(let i = 0; i < ans.length; i++){
-                console.log(ans.result[i]);
-                props.setUrlimages(ans.result[i])
-            }
+            props.setUrlimages(ans.result)
             
 
         }
