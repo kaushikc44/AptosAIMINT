@@ -14,48 +14,51 @@ function Textarea(props:any){
         props.setText(event.target.value);
     }
 
-    
+    const obj = {
+        "propmt":props.text
+    }
 
     const testimages = async () =>{
-    //     const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/api/v0/",{
-    //             method: "POST",
-    //             mode:"cors",
-    //             body: JSON.stringify(obj)
-    //         });
-    //         // .then(response => console.log(response.json())).catch(err => console.log(err));
-    //         const res = await req.json();
-    //         console.log((res as any).result);
-    //         for(let i  = 0 ; i < (res as any).result.length; i++){
-    //             props.setUrlimages(res.result[i]);
-    //         }
-    //         // looping();
+        const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/api/v0/",{
+                method: "POST",
+                mode:"cors",
+                body: JSON.stringify(obj as Object)
+            });
+            // .then(response => console.log(response.json())).catch(err => console.log(err));
+            const res = await req.json();
+            console.log((res as any).result);
+            // for(let i  = 0 ; i < (res as any).result.length; i++){
+            //     props.setUrlimages(res.result[i]);
+            // }
+            
+            // looping();
+
+            props.collectionMint();
     }
 
 
     const getImages = async () =>{
-        // console.log(props.text);
+        console.log(props.text);
        
-        // const texting = props.text;
-        // // console.log(typeof(texting))
-        // const obj = {
-        //     "propmt":props.text
-        // }
-        // console.log("Printing the object",obj["propmt"])
-        // if (props.text.length !== 0){
-        //     const res = await fetch("http://localhost:5000/api/v0/propmt",{
-        //         method: "POST",
-        //         mode:"cors",
-        //         body: JSON.stringify(obj)
-        //     });
-        //     const ans = await res.json();
-        //     console.log(ans);
-        //     for(let i = 0; i < ans.length; i++){
-        //         props.setUrlimages((ans as any).result[i])
-        //     }
+        const texting = props.text;
+        // console.log(typeof(texting))
+        
+        console.log("Printing the object",obj["propmt"])
+        if (props.text.length !== 0){
+            const res = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/api/v0/propmt",{
+                method: "POST",
+                // mode:"cors",
+                body: JSON.stringify(obj as object)
+            });
+            const ans = await res.json();
+            console.log(ans);
+            for(let i = 0; i < ans.length; i++){
+                props.setUrlimages((ans as any).result[i])
+            }
             
 
-        // }
-        props.collectionMint();
+        }
+        
     }
 
     return(
