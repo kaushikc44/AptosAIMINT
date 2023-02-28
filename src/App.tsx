@@ -24,7 +24,7 @@ function App() {
   const [collectionName,setcollectionName] = useState<string>("");
   const [text, setText] = useState<any>("Enter prompt here!");
   const [address, setAddress] = useState<string>("0x2845d80774ccf3ae0b02e39a149aff6a4f7b5a69fa59e2aa33d1d195d92693c3");
-  const [urlimages, setUrlimages] = useState<string[]>([]);
+  const [urlimages, setUrlimages] = useState<string[]>(["https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(74).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(75).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(70).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(76).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(72).webp"]);
   console.log(discounnect);
   
   
@@ -34,7 +34,7 @@ function App() {
     const txnHash = await (window as any).martian.createCollection(collectionName, text, "https://aptos.dev")
     console.log("Printing the hash",txnHash);
     for (let i = 0; i < urlimages.length; i++) {
-      const txnHashtoken = await (window as any).martian.createToken(text,  `${text}${i}`, "keep it simple", 1, urlimages[i], maxsupply)
+      const txnHashtoken = await (window as any).martian.createToken(collectionName,  `${text}${i}`, "keep it simple", 1, urlimages[i], maxsupply)
       console.log("Printing the hash token",txnHashtoken);
     }
   };

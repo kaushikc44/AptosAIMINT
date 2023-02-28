@@ -38,11 +38,14 @@ function Textarea(props:any){
          props.collectionMint();
     }
 
+    const value:any = []
 
     const getImages = async () =>{
         console.log(props.text);
-       
         const texting = props.text;
+        
+        props.setUrlimages([])
+        console.log(props.urlimages)
         // console.log(typeof(texting))
         
         console.log("Printing the object",obj["propmt"])
