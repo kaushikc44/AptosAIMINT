@@ -49,7 +49,7 @@ function WalletSpecifier (props:any)  {
   const getProvider = async () => {
     const response = await (window as any).martian.connect();
     const data = response
-    props.setAddress(data["address"]);
+    props.handleAddressChange(data["address"]);
     if(data["method"] === "connected"){
       const result = await checkDB(data["address"]);
       props.handleImageChange(result["imageUrl"]);

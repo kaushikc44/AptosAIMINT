@@ -5,19 +5,27 @@ import supabase from '../../superbase/supabaseClient';
 
 
 
-function ProfileUpdate(props:any){
+function ProfileUpdate(props:any,e:any){
     const myimage = props.myimage;
     const [previewImageUrl, setPreviewImageUrl] = useState<string>("");
     const [imageNotUpload,setimageNotUpload] = useState<boolean>(true);
 
     // To confirm the change of profile image
-    const changeProfilePicture = () => {
+    const changeProfilePicture = async (e:any) => {
+        e.preventDefault();
         if(previewImageUrl !== "" || previewImageUrl.length === 0){
+           
             //Update in DB(we need the address or the ID of the user)
-
+            const {status} = await supabase.from("Profile").update({"ImageUrl":previewImageUrl}).match({'aptos_id':props.address});
+            if(status === 204){
+                props.handleImageChange(previewImageUrl)
+            }
+            else{
+                setimageNotUpload(true);
+            }
 
             //Change profile picture and change local storage 
-            props.handleImageChange(previewImageUrl)
+          
         }
         else{
             setimageNotUpload(true);
