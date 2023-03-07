@@ -26,9 +26,22 @@ function App() {
   const [royaltAddress,setroyaltAddress] = useState<string>('');
   const [collectionName,setcollectionName] = useState<string>("");
   const [text, setText] = useState<any>("Enter prompt here!");
+  const [myuuid, setmyUuid] = useState<Number>(0);
   const [address, setAddress] = useState<string>("0x2845d80774ccf3ae0b02e39a149aff6a4f7b5a69fa59e2aa33d1d195d92693c3");
   const [urlimages, setUrlimages] = useState<string[]>(["https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(74).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(75).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(70).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(76).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(72).webp"]);
   
+  useEffect(() => {
+    const storeuuid = localStorage.getItem('myuuid');
+    if(storeuuid) {
+      setmyUuid(Number(storeuuid));
+    }
+  })
+
+  // const handleUuidChange = (uuid:Number) => {
+  //   setmyUuid(uuid);
+  //   localStorage.setItem('myuuid',uuid);
+  // };
+
   useEffect(() => {
     const storeImage = localStorage.getItem('myImage');
     if(storeImage) {
@@ -69,7 +82,7 @@ function App() {
             <div id="container">
               <ParticlesApp />
               <div id="mydiv">
-              <WalletSpecifier setAddress={setAddress} setdiscounnect={setdiscounnect} text={text} urlimage={urlimages} handleImageChange={handleImageChange} />
+              <WalletSpecifier setAddress={setAddress} setdiscounnect={setdiscounnect} text={text} urlimage={urlimages} handleImageChange={handleImageChange}  />
               </div>
             </div>
           }/>
@@ -94,7 +107,7 @@ function App() {
         <div id="mydiv">
           <Navbar address={address} setdiscounnect={setdiscounnect} myimage={myimage} />
           <div className='flex justify-center items-center' >
-          <ProfileUpdate myimage={myimage}/>
+          <ProfileUpdate myimage={myimage} handleImageChange={handleImageChange}/>
         </div>
         </div>
         

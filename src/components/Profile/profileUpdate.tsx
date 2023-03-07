@@ -1,22 +1,57 @@
 import React,{useState,useEffect} from 'react';
 import Navbar from '../navbar';
 import ParticlesApp from '../partciles';
+import supabase from '../../superbase/supabaseClient';
 
 
 
 function ProfileUpdate(props:any){
     const myimage = props.myimage;
-    const [previewImage, setPreviewImage] = useState<string>(props.myimage);
+    const [previewImageUrl, setPreviewImageUrl] = useState<string>("");
+    const [imageNotUpload,setimageNotUpload] = useState<boolean>(true);
 
-    // const changeProfilePicture = () => {
+    // To confirm the change of profile image
+    const changeProfilePicture = () => {
+        if(previewImageUrl !== "" || previewImageUrl.length === 0){
+            //Update in DB(we need the address or the ID of the user)
 
-    // }
 
-    
+            //Change profile picture and change local storage 
+            props.handleImageChange(previewImageUrl)
+        }
+        else{
+            setimageNotUpload(true);
+        }
+    }
 
-    const previewPicture =(e:any) => {
+    //Will store it in the storage and create a url
+    const uploadTostorage = async(path:string) => {
+        const avatarFile = new File([path],'avatar.png',{type:'image/png'})
+        const d = new Date();
+        const time = d.getTime();
+        const {data,error} = await supabase.storage.from('avatars').upload(`${time}`,avatarFile,{cacheControl:'3600',upsert: false})
+        if (error === null) {
+            const{data,error} = await  supabase.storage.from('avatars').createSignedUrl(`${time}`,31563000)
+            if (error === null) {
+                return data.signedUrl;
+            }
+            else{
+                return null;
+            }
+        }
+        else{
+            return null;
+        }
+    };
+
+    //This will only occur if the user uploads an image there for calling the above function 
+    const previewPicture =  async (e:any) => {
         console.log(e.target.files);
-        setPreviewImage(URL.createObjectURL(e.target.files[0]))
+        const urloftheimaeg = URL.createObjectURL(e.target.files[0])
+        const value = await  uploadTostorage(e.target.files[0])
+        setPreviewImageUrl(value !== null ? value : "")
+        setimageNotUpload(false);
+
         
 
     };
@@ -29,10 +64,10 @@ function ProfileUpdate(props:any){
             <form> 
                 <label className="block ml-[5rem] mt-[11rem]">
                 <span className="sr-only">Choose File</span>
-                <input type="file" className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" />
+                <input type="file" className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" onChange={previewPicture} />
                 </label>
             </form> 
-            <button className='mr-[5rem] pl-[20px] pr-[20px] text-gray-900 mt-[10rem] max-w-[8rem] max-h-[4rem] justify-items-start  hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm  text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800' >
+            <button className='mr-[5rem] pl-[20px] pr-[20px] text-gray-900 mt-[10rem] max-w-[8rem] max-h-[4rem] justify-items-start  hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm  text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800' onClick={changeProfilePicture} >
                 Upload
             </button>
         </div>
