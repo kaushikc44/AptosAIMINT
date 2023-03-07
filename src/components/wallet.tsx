@@ -1,19 +1,49 @@
-// import React,{useState} from 'react';
-// import { blob } from 'stream/consumers';
 import { useNavigate } from "react-router-dom";
+import supabase from "../superbase/supabaseClient";
 
 
 
-// interface AddressProps{
-//   setAddress: (address :string) => void;
-//   setdiscounnect:(discounnect:boolean) => void;
-//   text:string;
-// }
 
 function WalletSpecifier (props:any)  {
   const {text} = props;
   
   const isMartianWalletInstalled = (window as any).martian
+
+  const checkDB = async (address:string) =>{
+    const {data,error}  = await supabase.from("Profile").select().eq("aptos_id",address);
+    
+    if (error){
+      return {
+        imageUrl:"",
+        nickname:"",
+      }
+    }
+
+    if (data?.length === 0){
+      const {error} = await supabase.from("Profile").insert({"aptos_id":address});
+      if (error){
+        console.log(error)
+        return {
+          imageUrl:"",
+          nickname:"",
+        }
+      }
+      else{
+        console.log("Inserted profile");
+        return {
+          imageUrl:"https://gsnbshovrlixxitmnbzj.supabase.co/storage/v1/object/sign/avatars/mushroom.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhdmF0YXJzL211c2hyb29tLnBuZyIsImlhdCI6MTY3ODIwODAwNSwiZXhwIjoxNzA5NzQ0MDA1fQ.jTPKEJKZCbDMFiLxkmcDBJsMYsAPlqR3r0fNh_V3eUU&t=2023-03-07T16%3A53%3A25.700Z",
+          nickname:"RockBuster",
+        }
+      }
+    }
+    else{
+      return {
+        imageUrl:data[0]['ImageUrl'],
+        nickname:data[0]['NickName'],
+      }
+    }
+    
+  }
 
   const navigate = useNavigate();
   const getProvider = async () => {
@@ -21,6 +51,9 @@ function WalletSpecifier (props:any)  {
     const data = response
     props.setAddress(data["address"]);
     if(data["method"] === "connected"){
+      const result = await checkDB(data["address"]);
+      console.log(result["imageUrl"] !== undefined ? result["imageUrl"] :"https://gsnbshovrlixxitmnbzj.supabase.co/storage/v1/object/sign/avatars/mushroom.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhdmF0YXJzL211c2hyb29tLnBuZyIsImlhdCI6MTY3ODIwODAwNSwiZXhwIjoxNzA5NzQ0MDA1fQ.jTPKEJKZCbDMFiLxkmcDBJsMYsAPlqR3r0fNh_V3eUU&t=2023-03-07T16%3A53%3A25.700Z")
+      props.setmyimage(result["imageUrl"] !== undefined ? result["imageUrl"] :"");
       props.setdiscounnect(false);
       navigate("/mint")
      

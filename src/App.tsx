@@ -7,6 +7,7 @@ import Textarea from './components/textae';
 import Aptos from './components/aptosnftcreator';
 import Form from './components/form';
 import ParticlesApp from './components/partciles';
+import ProfileUpdate from "../src/components/Profile/profileUpdate"
 import {
   BrowserRouter as Router,
   Routes,
@@ -19,13 +20,15 @@ import {
 function App() {
   
   const [discounnect, setdiscounnect] = useState<boolean>(false);
+  
   const [maxsupply, setmaxsupply] = useState<Number>(1);
+  const [myimage, setmyimage] = useState<string>("");
   const [royaltAddress,setroyaltAddress] = useState<string>('');
   const [collectionName,setcollectionName] = useState<string>("");
   const [text, setText] = useState<any>("Enter prompt here!");
   const [address, setAddress] = useState<string>("0x2845d80774ccf3ae0b02e39a149aff6a4f7b5a69fa59e2aa33d1d195d92693c3");
   const [urlimages, setUrlimages] = useState<string[]>(["https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(74).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(75).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(70).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(76).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(72).webp"]);
-  console.log(discounnect);
+  
   
   
   const collectionMint = async () => {
@@ -49,12 +52,13 @@ function App() {
       <Router>
         <Link to="/"></Link>
         <Link to="/mint" ></Link>
+        <Link to="/profile" ></Link>
         <Routes>
           <Route path="/" element={
             <div id="container">
               <ParticlesApp />
               <div id="mydiv">
-              <WalletSpecifier setAddress={setAddress} setdiscounnect={setdiscounnect} text={text} urlimage={urlimages}  />
+              <WalletSpecifier setAddress={setAddress} setdiscounnect={setdiscounnect} text={text} urlimage={urlimages} setmyimage={setmyimage} />
               </div>
             </div>
           }/>
@@ -62,7 +66,7 @@ function App() {
         <div id="container">
         <ParticlesApp />
         <div id="mydiv">
-          <Navbar address={address} setdiscounnect={setdiscounnect}/>
+          <Navbar address={address} setdiscounnect={setdiscounnect} myimage={myimage} />
           <div className='flex justify-center items-center' >
           <Form  setcollectionName={setcollectionName} collectionName={collectionName} setmaxsupply={setmaxsupply} maxsupply={maxsupply} royaltAddress={royaltAddress} setroyaltAddress={setroyaltAddress}/>
           <ImageDisplay urlimages={urlimages}/> 
@@ -73,7 +77,21 @@ function App() {
       </div>}
 
       />
+      <Route path="/profile" element={
+        <div id="container">
+        <ParticlesApp />
+        <div id="mydiv">
+          <Navbar address={address} setdiscounnect={setdiscounnect} myimage={myimage} />
+          <div className='flex justify-center items-center' >
+          <ProfileUpdate />
+        </div>
+        </div>
+        
+      </div>}
+
+      />
       </Routes> 
+      
       </Router>
       
       

@@ -6,6 +6,7 @@
     "@aptos-labs/wallet-adapter-react": "^0.2.4",
     "@martianwallet/aptos-wallet-adapter": "^0.0.3",
     "@pontem/aptos-wallet-adapter": "^0.7.0",
+    "@supabase/supabase-js": "^2.10.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",

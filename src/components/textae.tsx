@@ -54,6 +54,7 @@ function Textarea(props:any){
             const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/api/v0/propmt",{
                 method: "POST",
                 mode:"cors",
+                credentials:"include",
                 body: JSON.stringify(obj),
                 headers:{"Content-Type": "application/json"}
             });
