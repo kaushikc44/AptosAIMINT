@@ -1,11 +1,12 @@
 import React,{useState,useEffect} from 'react';
 import Navbar from '../navbar';
 import ParticlesApp from '../partciles';
-import myimage from "../../assets/images/mushroom.png";
+
 
 
 function ProfileUpdate(props:any){
-    // const [previewImage, setPreviewImage] = useState<string>();
+    const myimage = props.myimage;
+    const [previewImage, setPreviewImage] = useState<string>(props.myimage);
 
     // const changeProfilePicture = () => {
 
@@ -13,12 +14,12 @@ function ProfileUpdate(props:any){
 
     
 
-    // const previewPicture =(e:any) => {
-    //     console.log(e.target.files);
-    //     setPreviewImage(URL.createObjectURL(e.target.files[0]))
+    const previewPicture =(e:any) => {
+        console.log(e.target.files);
+        setPreviewImage(URL.createObjectURL(e.target.files[0]))
         
 
-    // };
+    };
     return(
         
         <>

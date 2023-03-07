@@ -12,7 +12,6 @@ function Navbar(props:any){
     let AAddress = props.address;
     let addressvalue = AAddress.slice(0,4) +".."+ AAddress.slice(64,66);
     console.log(addressvalue);
-    console.log("Printing my image ",props.myimage)
     const myimage = props.myimage;
     console.log(myimage);
     var menu = document.getElementById("user-dropdown");

@@ -52,8 +52,7 @@ function WalletSpecifier (props:any)  {
     props.setAddress(data["address"]);
     if(data["method"] === "connected"){
       const result = await checkDB(data["address"]);
-      console.log(result["imageUrl"] !== undefined ? result["imageUrl"] :"https://gsnbshovrlixxitmnbzj.supabase.co/storage/v1/object/sign/avatars/mushroom.png?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJhdmF0YXJzL211c2hyb29tLnBuZyIsImlhdCI6MTY3ODIwODAwNSwiZXhwIjoxNzA5NzQ0MDA1fQ.jTPKEJKZCbDMFiLxkmcDBJsMYsAPlqR3r0fNh_V3eUU&t=2023-03-07T16%3A53%3A25.700Z")
-      props.setmyimage(result["imageUrl"] !== undefined ? result["imageUrl"] :"");
+      props.handleImageChange(result["imageUrl"]);
       props.setdiscounnect(false);
       navigate("/mint")
      

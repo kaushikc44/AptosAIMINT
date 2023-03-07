@@ -29,6 +29,17 @@ function App() {
   const [address, setAddress] = useState<string>("0x2845d80774ccf3ae0b02e39a149aff6a4f7b5a69fa59e2aa33d1d195d92693c3");
   const [urlimages, setUrlimages] = useState<string[]>(["https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(74).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(75).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(70).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(76).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(72).webp"]);
   
+  useEffect(() => {
+    const storeImage = localStorage.getItem('myImage');
+    if(storeImage) {
+      setmyimage(storeImage);
+    }
+  })
+
+  const handleImageChange =  (imgUrl:string) =>{
+    setmyimage(imgUrl);
+    localStorage.setItem('myImage',imgUrl);
+  }
   
   
   const collectionMint = async () => {
@@ -58,7 +69,7 @@ function App() {
             <div id="container">
               <ParticlesApp />
               <div id="mydiv">
-              <WalletSpecifier setAddress={setAddress} setdiscounnect={setdiscounnect} text={text} urlimage={urlimages} setmyimage={setmyimage} />
+              <WalletSpecifier setAddress={setAddress} setdiscounnect={setdiscounnect} text={text} urlimage={urlimages} handleImageChange={handleImageChange} />
               </div>
             </div>
           }/>
@@ -83,7 +94,7 @@ function App() {
         <div id="mydiv">
           <Navbar address={address} setdiscounnect={setdiscounnect} myimage={myimage} />
           <div className='flex justify-center items-center' >
-          <ProfileUpdate />
+          <ProfileUpdate myimage={myimage}/>
         </div>
         </div>
         
