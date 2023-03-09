@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import supabase from "../superbase/supabaseClient";
+import supabase from "../utils/supabaseClient";
 
 
 

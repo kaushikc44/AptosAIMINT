@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react';
 import Navbar from '../navbar';
 import ParticlesApp from '../partciles';
-import supabase from '../../superbase/supabaseClient';
+import supabase from '../../utils/supabaseClient';
 
 
 
