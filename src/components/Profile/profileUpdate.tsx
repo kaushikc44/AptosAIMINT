@@ -22,6 +22,7 @@ function ProfileUpdate(props:any,e:any){
             }
             else{
                 setimageNotUpload(true);
+                alert("Error has occurred. Please try again")
             }
 
             //Change profile picture and change local storage 
