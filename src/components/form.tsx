@@ -1,9 +1,13 @@
-import React from 'react'
+import React,{useState} from 'react'
 
-function form(props:any) {
+function Form(props:any) {
+    const [visiblity,setVisibility] = useState<boolean>(true);
     
     const updateCollectionName = (event : any) => {
      props.setcollectionName(event.target.value);
+     if (props.collectionName !== null || props.collectionName.length !== 0){
+        setVisibility(false);
+     }
     }
     const changetomaxsupply = (event:any) =>{
         props.setmaxsupply(event.target.value);
@@ -11,6 +15,11 @@ function form(props:any) {
     const changestoroyalt = (event:any) =>{
         props.setroyaltAddress(event.target.value);
     }
+
+    
+
+    
+
 
     return (
         <form className="w-full max-w-lg p-2">
@@ -42,4 +51,4 @@ function form(props:any) {
     )
 }
 
-export default form
+export default Form

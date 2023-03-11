@@ -22,7 +22,7 @@ function ProfileUpdate(props:any,e:any){
             }
             else{
                 setimageNotUpload(true);
-                alert("Error has occurred. Please try again")
+                alert("Error has occurred. Please try again");
             }
 
             //Change profile picture and change local storage 
@@ -36,6 +36,7 @@ function ProfileUpdate(props:any,e:any){
     //Will store it in the storage and create a url
     const uploadTostorage = async(path:string) => {
         const avatarFile = new File([path],'avatar.png',{type:'image/png'})
+        console.log("The avatar file",avatarFile);
         const d = new Date();
         const time = d.getTime();
         const {data,error} = await supabase.storage.from('avatars').upload(`${time}`,avatarFile,{cacheControl:'3600',upsert: false})

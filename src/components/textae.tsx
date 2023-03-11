@@ -18,25 +18,8 @@ function Textarea(props:any){
         "propmt":props.text
     }
 
-    const testimages = async () =>{
-        props.setUrlimages([])
-        const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/api/v0/",{
-                method: "POST",
-                mode:"cors",
-                body: JSON.stringify(obj),
-                headers:{"Content-Type": "application/json"}
-            });
-            // .then(response => console.log(response.json())).catch(err => console.log(err));
-        const ans = await req.json();
-        props.setUrlimages(ans.result)
-        console.log("Printing the result",ans.result);
-            // for(let i  = 0 ; i < (res as any).result.length; i++){
-            //     props.setUrlimages(res.result[i]);
-            // }
-            
-        //     // looping();
-
-        //  props.collectionMint();
+    const mintImages = async () =>{
+        props.collectionMint();
     }
 
     const value:any = []
@@ -78,7 +61,7 @@ function Textarea(props:any){
 
         <div className="container  grid grid-row-1 grid-cols-2   content-center    pt-2">
         <button type="button" style={{maxWidth:'400px'}} className="text-gray-900  mx-40 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800" onClick={getImages}>Generate</button>
-        <button type="button"  style={{maxWidth:'400px'}} className="text-gray-900 mx-40 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"onClick={testimages}>Mint</button>
+        <button type="button"  style={{maxWidth:'400px'}} className="text-gray-900 mx-40 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800"onClick={mintImages}>Mint</button>
         </div>
 
         </div>
