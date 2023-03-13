@@ -26,7 +26,7 @@ function App() {
   const [myimage, setmyimage] = useState<string>("");
   const [royaltAddress,setroyaltAddress] = useState<string>('');
   const [collectionName,setcollectionName] = useState<string>("");
-  const [text, setText] = useState<any>("Enter prompt here!");
+  const [text, setText] = useState<any>("");
   const [myuuid, setmyUuid] = useState<Number>(0);
   const [address, setAddress] = useState<string>("");
   const [urlimages, setUrlimages] = useState<string[]>(["https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(74).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(75).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(70).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(76).webp","https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(72).webp"]);
@@ -58,13 +58,10 @@ function App() {
   //Might be deleted
   const storeInDb = async(arr:string[]) =>{
     for (let i = 0; i < arr.length; i++) {
-      // const req  = await axios.get("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo2zi7aWGrKd8eTtROEbeG4noyYyEicLaqpMOmqXXN&s",{responseType:"arraybuffer"});
-      const req = await fetch(arr[i])
+      const req  = await axios.get("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo2zi7aWGrKd8eTtROEbeG4noyYyEicLaqpMOmqXXN&s",{responseType:"arraybuffer"});
       console.log(await req);
-      // const imgBlob = new Blob([req.data],{"type": "image/jpeg"});
-      const imgBlob = await req.blob();
-      const imgUrl = URL.createObjectURL(imgBlob);
-      const Imagefile = new File([imgUrl],"imageGenerator.png",{type:"image/png"});
+      const imgBlob = await Buffer.from(req.data,"utf-8")
+      const Imagefile = new File([imgBlob],"imageGenerator.png",{type:"image/png"});
       const d = new Date();
       const time = d.getTime();
       console.log(imgBlob);
@@ -125,11 +122,14 @@ function App() {
         <ParticlesApp />
         <div id="mydiv">
           <Navbar address={address} setdiscounnect={setdiscounnect} myimage={myimage} />
-          <div className='flex justify-center items-center' >
+          <div className='flex justify-start items-center' >
           <Form  setcollectionName={setcollectionName} collectionName={collectionName} setmaxsupply={setmaxsupply} maxsupply={maxsupply} royaltAddress={royaltAddress} setroyaltAddress={setroyaltAddress}/>
           <ImageDisplay urlimages={urlimages}/> 
         </div>
+        
         <Textarea setText={setText} text={text} setUrlimages={setUrlimages} urlimages={urlimages} collectionMint={collectionMint} collectionName={collectionName}/>
+    
+        
         </div>
         
       </div>}

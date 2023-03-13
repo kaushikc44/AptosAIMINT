@@ -5,9 +5,11 @@ function Form(props:any) {
     
     const updateCollectionName = (event : any) => {
      props.setcollectionName(event.target.value);
-     if (props.collectionName !== null || props.collectionName.length !== 0){
-        setVisibility(false);
-     }
+     setVisibility(false);
+    //  if (props.collectionName.length !== 0){
+    //     console.log(props.collectionName.length);
+        
+    //  }
     }
     const changetomaxsupply = (event:any) =>{
         props.setmaxsupply(event.target.value);
@@ -22,14 +24,14 @@ function Form(props:any) {
 
 
     return (
-        <form className="w-full max-w-lg p-2">
+        <form className="w-auto max-w-lg p-2">
             <div className="flex flex-wrap -mx-3 mb-6">
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                         Collection Name
                     </label>
-                    <input className="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="CryptoPunks" onChange={updateCollectionName} value={props.collectionName} />
-                    <p className="text-red-500 text-xs italic">Please fill out this field.</p>
+                    <input className={`appearance-none block w-full bg-gray-200 text-gray-700 border ${visiblity === true ? "border-red-500" : "" }  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white`} id="grid-first-name" type="text" placeholder="CryptoPunks" onChange={updateCollectionName} value={props.collectionName} />
+                    <p className={`text-red-500 ${visiblity === true ? "" : "hidden" } text-xs italic`}>Please fill out this field.</p>
                 </div>
                 <div className="w-full md:w-1/2 px-3">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
