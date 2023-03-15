@@ -57,12 +57,13 @@ function App() {
   
   //Might be deleted
   const storeInDb = async(arr:string[]) =>{
-    const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/v0/supabaseStorage",{
+    const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/api/v0/supabaseStorage",{
       method:"GET",
       mode:"cors"
     })
-
+    console.log(req)
     const ans = await req.json()
+    console.log(ans)
     for (let i = 0; i < ans.result.length; i++) {
     //   const req  = await axios.get("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo2zi7aWGrKd8eTtROEbeG4noyYyEicLaqpMOmqXXN&s",{responseType:"arraybuffer"});
     //   console.log(await req);
