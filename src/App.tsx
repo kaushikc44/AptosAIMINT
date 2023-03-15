@@ -57,7 +57,7 @@ function App() {
   
   //Might be deleted
   const storeInDb = async(arr:string[]) =>{
-    const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/v0/propmt",{
+    const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/v0/supabaseStorage",{
       method:"GET",
       mode:"cors"
     })
