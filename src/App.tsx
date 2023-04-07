@@ -56,7 +56,7 @@ function App() {
   }
   
   //Might be deleted
-  const storeInDb = async(arr:string[]) =>{
+  const storeInDb = async() =>{
     const req = await fetch("https://us-central1-leviosa-backend.cloudfunctions.net/api/api/v0/supabaseStorage",{
       method:"GET",
       mode:"cors"
@@ -65,30 +65,30 @@ function App() {
     const ans = await req.json()
     console.log(ans)
     for (let i = 0; i < ans.result.length; i++) {
-    //   const req  = await axios.get("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQo2zi7aWGrKd8eTtROEbeG4noyYyEicLaqpMOmqXXN&s",{responseType:"arraybuffer"});
-    //   console.log(await req);
-    //   const imgBlob = await Buffer.from(req.data,"utf-8")
-    //   const Imagefile = new File([imgBlob],"imageGenerator.png",{type:"image/png"});
-    //   const d = new Date();
-    //   const time = d.getTime();
-    //   console.log(imgBlob);
-    //   console.log(Imagefile);
-    //   const {data,error} = await supabase.storage.from('avatars').upload(`${time}`,Imagefile,{cacheControl:'3600',upsert: false})
-    //   if(error === null){
-    //     const{data,error} = await  supabase.storage.from('avatars').createSignedUrl(`${time}`,31563000)
-    //     console.log("Inner data of the signed url",data);
-    //     if(error === null){
-    //         const txnHashtoken = await (window as any).martian.createToken(collectionName,  `${text}`, "keep it simple", 1,data["signedUrl"], maxsupply)
-    //         console.log("Printing the hash token",txnHashtoken);
-    //     }
-    //     else{
-    //       console.log("Cannot create the signature URL ");
-    //     }
-    //   }
-    //   else{
-    //     console.log("Cannot upload the image");
-    //   }
-    const txnHashtoken = await (window as any).martian.createToken(collectionName,  `${text}`, "keep it simple", 1,ans.result[i], maxsupply);
+      const req  = await axios.get(ans.result[i],{responseType:"arraybuffer"});
+      console.log(await req);
+      const imgBlob = await Buffer.from(req.data,"utf-8")
+      const Imagefile = new File([imgBlob],"imageGenerator.png",{type:"image/png"});
+      const d = new Date();
+      const time = d.getTime();
+      console.log(imgBlob);
+      console.log(Imagefile);
+      const {data,error} = await supabase.storage.from('avatars').upload(`${time}`,Imagefile,{cacheControl:'3600',upsert: false})
+      if(error === null){
+        const{data,error} = await  supabase.storage.from('avatars').createSignedUrl(`${time}`,31563000)
+        console.log("Inner data of the signed url",data);
+        if(error === null){
+            const txnHashtoken = await (window as any).martian.createToken(collectionName,  `${text}`, "keep it simple", 1,data["signedUrl"], maxsupply)
+            console.log("Printing the hash token",txnHashtoken);
+        }
+        else{
+          console.log("Cannot create the signature URL ");
+        }
+      }
+      else{
+        console.log("Cannot upload the image");
+      }
+    const txnHashtoken = await (window as any).martian.createToken(collectionName,  `${text}${i}`, "keep it simple", 1,ans.result[i], maxsupply);
     console.log("Printing the hash token",txnHashtoken);
     }
   }
@@ -98,7 +98,7 @@ function App() {
     console.log("Entering to create a new Collection")
     const txnHash = await (window as any).martian.createCollection(collectionName, text, "https://aptos.dev")
     console.log("Printing the hash",txnHash);
-    await storeInDb(urlimages);
+    await storeInDb();
     // if (urlimages.length !== 0){
       
     // }
@@ -126,17 +126,14 @@ function App() {
             </div>
           }/>
           <Route path="/mint" element={
-        <div id="container">
-        <ParticlesApp />
-        <div id="mydiv">
+        <div>
           <Navbar address={address} setdiscounnect={setdiscounnect} myimage={myimage} />
           <div className='flex justify-start items-center' >
           <Form  setcollectionName={setcollectionName} collectionName={collectionName} setmaxsupply={setmaxsupply} maxsupply={maxsupply} royaltAddress={royaltAddress} setroyaltAddress={setroyaltAddress}/>
           <ImageDisplay urlimages={urlimages}/> 
-        </div>
+          </div>
         <Textarea setText={setText} text={text} setUrlimages={setUrlimages} urlimages={urlimages} collectionMint={collectionMint} collectionName={collectionName}/>
-        </div>
-        
+
       </div>}
 
       />

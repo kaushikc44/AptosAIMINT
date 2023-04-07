@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import supabase from "../utils/supabaseClient";
-
+import imagena from "C:/Users/kaush/OneDrive/Desktop/personal project/leviosa/src/assets/images/martian.jpg"
 
 
 
@@ -66,8 +66,8 @@ function WalletSpecifier (props:any)  {
 
     return (
       <>
-          <button className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" onClick={getProvider}>
-            Connect To Wallet
+          <button className="flex text-center  bg-black hover:bg-black-800 text-white font-semibold py-2 px-4 border border-gray-400  rounded shadow" onClick={getProvider}>
+          <img className="w-7 h-7 rounded-full mr-0.5" src={imagena} alt="user photo" /> [  Connect To Martian Wallet ]
           </button>
       </>
     )

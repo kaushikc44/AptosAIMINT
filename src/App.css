@@ -28,6 +28,8 @@
   color: #61dafb;
 }
 
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -38,7 +40,9 @@
 }
 
 #container {
-  position: relative
+  position: relative;
+  
+
 }
 
 #tsparticles {
@@ -57,4 +61,6 @@
   top: 0;
   left: 0;
   z-index: 1;
+  margin-top: 500px;
+  margin-left: 800px;
 }
