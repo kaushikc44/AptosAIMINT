@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import supabase from "../utils/supabaseClient";
-import imagena from "C:/Users/kaush/OneDrive/Desktop/personal project/leviosa/src/assets/images/martian.jpg"
+import imagena from "../assets/images/martian.jpg"
 
 
 
